@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Lista de Produtos</h2>
+    <a class="btn btn-primary mb-3" href="{% url 'adicionar_produto' %}">Adicionar Produto</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Nome</th><th>Categoria</th><th>Preço</th><th>Estoque</th><th>Ações</th></tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr {% if produto.estoque_baixo %}class="table-warning"{% endif %}>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.categoria }}</td>
+                <td>R$ {{ produto.preco }}</td>
+                <td>{{ produto.estoque }}</td>
+                <td><a class="btn btn-sm btn-warning" href="{% url 'editar_produto' produto.id %}">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

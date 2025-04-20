@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Alerta de Estoque Baixo</h2>
+    {% if produtos %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for produto in produtos %}
+                    <li>{{ produto.nome }} - Apenas {{ produto.estoque }} unidades em estoque!</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        <p class="alert alert-success">Nenhum produto com estoque baixo.</p>
+    {% endif %}
+</div>
+{% endblock %}
